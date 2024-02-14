@@ -1,0 +1,41 @@
+<script>
+
+</script>
+
+<style>
+    .header {
+        display: grid;
+        grid-template-columns: repeat(10, 1fr);
+        grid-template-rows: repeat(3, 1fr);
+        grid-column-gap: 10px;
+        grid-row-gap: 10px;
+    }
+
+    .title { 
+        grid-area: 1 / 2 / 4 / 5; 
+        align-self: end;
+    }
+
+    .navigation { 
+        grid-area: 2 / 6 / 4 / 10;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr); /* Split into four columns */
+        grid-column-gap: 10px;
+    }
+
+    .navigation a {
+        text-align: center; /* Center align the anchor text */
+    }
+</style>
+
+<header class="header">
+    <div class="title">
+        <a href="/">Christopher Ariel</a>
+    </div>
+    <nav class="navigation">
+        <a href="/about">About Me</a>
+        <a href="/Gallery">Gallery</a>
+        <a href="/preset">LR Preset</a>
+        <a href="/contact">Contact</a>
+    </nav>
+</header>

@@ -1,2 +1,14 @@
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
+<script>
+    import Shell from './Shell.svelte'
+    import Hero from './Sections/Hero.svelte'
+</script>
+
+<style>
+ 
+</style>
+
+<Shell>
+    <Hero/>
+   <p> this is root svelte page </p>
+</Shell>
+
