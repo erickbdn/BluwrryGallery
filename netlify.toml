@@ -2,8 +2,5 @@
   command = "npm run build"
   publish = "build"
 
-[[plugins]]
-  package = "@netlify/plugin-svelte"
-
 [build.environment]
   NODE_VERSION = "20"
