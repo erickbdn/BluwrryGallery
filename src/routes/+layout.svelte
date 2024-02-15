@@ -3,11 +3,6 @@
 </script>
 
 <style>
-    .shell {
-        display: flex;
-        flex-direction: column;
-        min-height: 100vh; /* Ensure Shell fills the viewport height */
-    }
 
     .content {
         flex: 1; /* Allow content to expand to fill remaining space */
