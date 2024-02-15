@@ -1,8 +1,8 @@
 //initialization for contentful
 import * as contentful from 'contentful';
-const { createClient } = contentful;
 
-const client = createClient({
+
+const client = contentful.createClient({
     space: import.meta.env.VITE_CONTENTFUL_SPACE_ID,
     environment: 'master', // defaults to 'master' if not set
     accessToken: import.meta.env.VITE_CONTENTFUL_ACCESS_TOKEN
