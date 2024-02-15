@@ -4,7 +4,7 @@
   </script>
   
 {#each photos as photo}
-<a href={`/Gallery/${photo.sys.id}`}>
+<a href={`/Gallery/${photo.sys.id}`} data-sveltekit-prefetch>
   <figure>
     <img src={photo.fields.image.fields.file.url} alt={photo.fields.image.fields.title} />
     <figcaption>
