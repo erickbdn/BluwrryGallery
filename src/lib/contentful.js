@@ -1,5 +1,6 @@
 //initialization for contentful
-import { createClient } from 'contentful';
+import * as contentful from 'contentful';
+const { createClient } = contentful;
 
 const client = createClient({
     space: import.meta.env.VITE_CONTENTFUL_SPACE_ID,
