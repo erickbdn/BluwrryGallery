@@ -1,6 +1,7 @@
 <script>
      export let data;
     const { photos } = data;
+    console.log(photos)
 </script>
 
 <style>
