@@ -1,4 +1,4 @@
-import { fetchEntry } from "../../../lib/contentful"
+import { fetchEntry } from "$lib/contentful"
 
 export const load = async ({ params }) => {
     // Extract the entry ID from the params object
