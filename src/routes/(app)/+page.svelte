@@ -1,9 +1,10 @@
 <script>
-     export let data;
-    const { photos } = data;
-    console.log(photos)
-</script>
+    
+    export let pets; // Assuming `pets` is the data fetched from Sanity
 
+ console.log('Fetched pets:', pets); // Log the fetched data to the console
+
+</script>
 <style>
  /* Hero Section Styling */
  .hero-wrapper {

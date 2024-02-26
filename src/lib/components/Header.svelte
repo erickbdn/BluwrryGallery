@@ -36,6 +36,6 @@
         <a href="/about">About Me</a>
         <a href="/Gallery">Gallery</a>
         <a href="/preset">LR Preset</a>
-        <a href="/contact">Contact</a>
+        <a href="/studio">Contact</a>
     </nav>
 </header>
