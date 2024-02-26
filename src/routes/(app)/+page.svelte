@@ -1,8 +1,8 @@
 <script>
     
-    export let pets; // Assuming `pets` is the data fetched from Sanity
+    export let data; // Assuming `pets` is the data fetched from Sanity
 
- console.log('Fetched pets:', pets); // Log the fetched data to the console
+ console.log('Fetched pets:', data); // Log the fetched data to the console
 
 </script>
 <style>
