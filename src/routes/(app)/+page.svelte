@@ -1,28 +1,16 @@
 <script>
     /** @type {import('./$types').PageData} */
     export let data; // Assuming `pets` is the data fetched from Sanity
- 
-
 </script>
 
     <!-- This is Hero Section -->
     <section class="hero-wrapper">
         <h1 class="hero-title">CHRISTOPHER ARIEL'S WEBPAGE</h1>
-        <div class="image-wrapper-1">
-            
-        </div>
-        <div class="image-wrapper-2">
-
-        </div>
-        <div class="image-wrapper-3">
-
-        </div>
-        <div class="image-wrapper-4">
-
-        </div>
-        <div class="image-wrapper-5">
-
-        </div>
+        {#each data.props.posts.slice(0, 5) as post, index}
+    {#if post.image && post.image.asset.url}
+    <div class="image-wrapper-{index + 1}" style="background-image: url({post.image.asset.url}); background-size: cover;"></div>
+    {/if}
+{/each}
     </section>
 
     <!-- This is About Section -->
@@ -60,37 +48,37 @@
                grid-template-rows: repeat(10, 1fr);
                grid-column-gap: 10px;
                grid-row-gap: 10px;
-               background-color: aqua;
+               height: 80vh;
            }
        
            .hero-title {
                grid-area: 3 / 1 / 9 / 11;
                text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin: 0;
            }
        
            .image-wrapper-1 { 
                grid-area: 1 / 7 / 4 / 9; 
-               background-color: blue;
            }
        
            .image-wrapper-2 { 
                grid-area: 5 / 8 / 7 / 11;
-               background-color: blue;
            }
        
            .image-wrapper-3 { 
                grid-area: 2 / 2 / 5 / 4;
-               background-color: blue;
            }
        
            .image-wrapper-4 { 
                grid-area: 7 / 5 / 11 / 7; 
-               background-color: blue;
            }
        
            .image-wrapper-5 { 
                grid-area: 6 / 1 / 9 / 4; 
-               background-color: blue;
            }
        
            /* About Section Styling */
