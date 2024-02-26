@@ -3,8 +3,8 @@ import { defineConfig } from 'vite';
 
 export default defineConfig({
 	plugins: [sveltekit()],
-    ssr: {
-        noExternal: ['sanity', '@sanity/client']
-    }
+    // optimizeDeps: {
+    //     exclude: ['sanity'] // do not pre-bundle some-library
+    //   }
 });
     
