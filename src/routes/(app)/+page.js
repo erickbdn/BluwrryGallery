@@ -1,12 +1,13 @@
-import { loadPost } from '$lib/utils/sanityClient';
+import { loadPost, loadAuthor } from '$lib/utils/sanityClient';
 
 /** @type {import('./$types').PageLoad} */
 export async function load({ params }) {
-    const { pets } = await loadPost({ params });
-    console.log('Fetched pets:', pets); // Log the fetched data to the console
+    const { posts } = await loadPost({ params });
+    const { author } = await loadAuthor({ params });
     return {
         props: {
-            pets
+            posts,
+            author
         }
     };
 }

@@ -8,11 +8,20 @@ const client = createClient({
 });
 
 export async function loadPost({ params }) {
-    const data = await client.fetch(`*[_type == "post"]`);
+    const data = await client.fetch(`*[_type == "post"] { 
+      title,
+      description,
+      category,
+      image {
+        asset -> {
+          url
+        }
+      }
+    }`);
   
     if (data) {
       return {
-        pets: data
+        posts: data
       };
     }
     return {
@@ -20,3 +29,26 @@ export async function loadPost({ params }) {
       body: new Error("Internal Server Error")
     };
   }
+
+  
+export async function loadAuthor({ params }) {
+  const data = await client.fetch(`*[_type == "author"] { 
+    name,
+    description,
+    socials,
+    image {
+      asset -> {
+        url
+      }
+    }
+  }`);
+  if (data) {
+    return {
+      author: data,
+    };
+  }
+  return {
+    status: 500,
+    body: new Error("Internal Server Error")
+  };
+}

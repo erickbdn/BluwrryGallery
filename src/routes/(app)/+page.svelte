@@ -1,8 +1,7 @@
 <script>
     /** @type {import('./$types').PageData} */
     export let data; // Assuming `pets` is the data fetched from Sanity
-
- console.log('Fetched pets:', data); // Log the fetched data to the console
+ 
 
 </script>
 
@@ -10,7 +9,7 @@
     <section class="hero-wrapper">
         <h1 class="hero-title">CHRISTOPHER ARIEL'S WEBPAGE</h1>
         <div class="image-wrapper-1">
-
+            
         </div>
         <div class="image-wrapper-2">
 
@@ -30,10 +29,10 @@
     <section class="about-wrapper">
         <h1 class="about-title">About Me</h1>
         <div class="image-wrapper">
-            <img src=""/>
+            <img src="{data.props.author[0].image.asset.url}" alt="Christopher Ariel's Profile Picture"/>
         </div>
-        <h2 class="about-me-name">CHRISTOPHER ARIEL</h2>
-        <p class="about-me-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam ut nibh a felis dignissim laoreet vel sed turpis. Curabitur iaculis erat eget scelerisque scelerisque. Vivamus diam purus, vestibulum sit amet sagittis at, maximus ac lacus. Praesent posuere lorem quis nisl commodo sodales. In sodales tempus ligula, sit amet fringilla diam iaculis id. Aliquam erat volutpat.</p>
+        <h2 class="about-me-name">{data.props.author[0].name}</h2>
+        <p class="about-me-description">{data.props.author[0].description}</p>
         <div class="icons-wrapper">
     
         </div>
@@ -108,7 +107,16 @@
            }
        
            .image-wrapper {
+            z-index: -1;
                grid-area: 2 / 1 / 11 / 6;
+               width: 100%; /* Ensure the wrapper takes up the entire grid cell */
+                height: 100%; /* Ensure the wrapper takes up the entire grid cell */
+                overflow: hidden; /* Hide any overflow from the image */
+           }
+
+           .image-wrapper img {
+                width: 100%; /* Make the image fill the width of the wrapper */
+                height: auto; /* Let the height adjust automatically based on the image */
            }
        
            .about-me-name {
