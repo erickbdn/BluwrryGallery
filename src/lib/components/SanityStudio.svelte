@@ -1,5 +1,5 @@
 <script>
-    import { renderStudio, defineConfig } from "sanity";
+    import { renderStudio, defineConfig} from "sanity";
     import { onMount } from "svelte";
 //tutorial from Chris Jayden
     export let config;

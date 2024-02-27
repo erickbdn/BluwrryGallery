@@ -33,9 +33,9 @@
         <a href="/">Christopher Ariel</a>
     </div>
     <nav class="navigation">
-        <a href="/about">About Me</a>
+        <a href="/AboutMe">About Me</a>
         <a href="/Gallery">Gallery</a>
-        <a href="/preset">LR Preset</a>
-        <a href="/studio">Contact</a>
+        <a href="/Lightroom">LR Preset</a>
+        <a href="/studio">Studio</a>
     </nav>
 </header>

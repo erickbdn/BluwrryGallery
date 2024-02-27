@@ -6,8 +6,11 @@ const client = createClient({
   apiVersion: "2023-02-23",
   useCdn: true,
 });
+// const user = client.users.getById('me');
+// console.log(user)
 
 export async function loadPost({ params }) {
+  
     const data = await client.fetch(`*[_type == "post"] { 
       title,
       description,
@@ -18,7 +21,7 @@ export async function loadPost({ params }) {
         }
       }
     }`);
-  
+    
     if (data) {
       return {
         posts: data
