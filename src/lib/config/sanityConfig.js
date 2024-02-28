@@ -78,6 +78,33 @@ export default {
                         title: 'Image'
                     }
                 ]
+            },
+            {
+                type: 'document',
+                name: 'featured',
+                title: 'Featured',
+                fields: [
+                    {
+                        type: 'string',
+                        name: 'title',
+                        title: 'Title'
+                    },
+                    {
+                        type: 'text',
+                        name: 'description',
+                        title: 'Description'
+                    },
+                    {
+                        type: 'string',
+                        name: 'category',
+                        title: 'Category'
+                    },
+                    {
+                        type: 'image',
+                        name: 'image',
+                        title: 'Image'
+                    }
+                ]
             }
         ]
     }

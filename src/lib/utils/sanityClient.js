@@ -55,3 +55,27 @@ export async function loadAuthor({ params }) {
     body: new Error("Internal Server Error")
   };
 }
+
+export async function loadFeatured({ params }) {
+  
+  const data = await client.fetch(`*[_type == "featured"] { 
+    title,
+    description,
+    category,
+    image {
+      asset -> {
+        url
+      }
+    }
+  }`);
+  
+  if (data) {
+    return {
+      featured: data
+    };
+  }
+  return {
+    status: 500,
+    body: new Error("Internal Server Error")
+  };
+}

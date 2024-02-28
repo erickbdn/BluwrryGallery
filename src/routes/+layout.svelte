@@ -10,11 +10,11 @@
         margin: 5% 0;
     }
 </style>
-
 <div class="shell">
     <Header />
     
     <main class="content">
+   
       <!-- This slot will be filled with the content of each page -->
       <slot />
     </main>

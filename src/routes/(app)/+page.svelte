@@ -1,9 +1,8 @@
 <script>
     import { initializeHoverEffect } from '$lib/utils/gsap'
-    import { onMount } from "svelte";
+    import { onMount, onDestroy } from "svelte";
     /** @type {import('./$types').PageData} */
-    export let data; // Assuming `pets` is the data fetched from Sanity
-
+	export let data;
     onMount(() => {
         initializeHoverEffect();
     });
@@ -18,6 +17,7 @@
             {/if}
         {/each}
     </section>
+    <h2 class="about-me-name">{data.props.author[0].name}</h2>
 
     <!-- This is About Section -->
     <section class="about-wrapper">
