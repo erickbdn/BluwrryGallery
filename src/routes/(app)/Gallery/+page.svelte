@@ -31,21 +31,20 @@ onMount(() => {
 </section>
 
 <!-- try embedding scroll anim from codepen gsap  -->
-
 <section class="category-section">
     <div class="category-section-title">
         <h2>Category</h2>
     </div>
-    {#each data.props.posts as post, i}
+    {#each data.props.posts.filter((post, index, array) => array.findIndex(p => p.category === post.category) === index) as post}
     <div class="category-menu-container">
         <div class="category-text">
             <div class="category-title"><a href='Gallery/{post.category}'>{post.category}</a></div>
             <div class="category-desc">{post.description}</div>
         </div>
         <div class="category-image"> 
-                <div class="img-container">
-                    <img src={post.image.asset.url} />
-                </div>
+            <div class="img-container">
+                <img src={post.image.asset.url} />
+            </div>
         </div>
     </div> 
     {/each}
