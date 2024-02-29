@@ -17,7 +17,6 @@
             {/if}
         {/each}
     </section>
-    <h2 class="about-me-name">{data.props.author[0].name}</h2>
 
     <!-- This is About Section -->
     <section class="about-wrapper">
@@ -75,6 +74,8 @@
                grid-row-gap: 10px;
                height: 80vh;
                margin-bottom: 25vh;
+               width: 90vw;
+               margin: 0 auto; /* Center the container horizontally */
            }
        
            .hero-title {
@@ -116,6 +117,8 @@
                grid-row-gap: 10px;
                height: 80vh;
                margin-bottom: 25vh;
+               width: 90vw;
+               margin: 0 auto; /* Center the container horizontally */
            }
        
            .about-title {
@@ -161,6 +164,8 @@
                grid-row-gap: 10px;
                height: 80vh;
                margin-bottom: 25vh;
+               width: 90vw;
+               margin: 0 auto; /* Center the container horizontally */
            }
        
            .nav-links-container { 
