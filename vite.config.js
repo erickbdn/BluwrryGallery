@@ -2,11 +2,11 @@ import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vite';
 
 export default defineConfig({
-    // ssr: {
-    //     noExternal: [
-    //       'gsap',
-    //     ],
-    //   }, 
+    ssr: {
+        noExternal: [
+          'gsap',
+        ],
+      }, 
     //   remove ssr option later this is only for dev
 	plugins: [sveltekit()],
     optimizeDeps: {
