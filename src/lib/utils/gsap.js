@@ -2,18 +2,28 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/all";
 
 export function initializeHoverEffect() {
+    gsap.set('.item-image', { yPercent: -50, xPercent: -50 })
     const items = document.querySelectorAll('.item');
 
     items.forEach((el) => {
-        const image = el.querySelector('img');
-
-        el.addEventListener('mouseenter', (e) => {
-            gsap.to(image, { autoAlpha: 1 });
-        });
-
-        el.addEventListener('mouseleave', (e) => {
-            gsap.to(image, { autoAlpha: 0 });
-        });
+        const image = el.querySelector('img'),
+        setX = gsap.quickSetter(image, "x", "px"),
+        setY = gsap.quickSetter(image, "y", "px"),
+        align = e => {
+          setX(e.clientX);
+          setY(e.clientY);
+        },
+        startFollow = () => document.addEventListener("mousemove", align),
+        stopFollow = () => document.removeEventListener("mousemove", align),
+        fade = gsap.to(image, {autoAlpha: 1, ease: "none", paused: true, onReverseComplete: stopFollow});
+  
+  el.addEventListener('mouseenter', (e) => {
+    fade.play();
+    startFollow();
+    align(e);
+  });
+  
+  el.addEventListener('mouseleave', () => fade.reverse());
     });
 }
 
@@ -75,11 +85,46 @@ export function categoryAnim() {
         });
       
         tl.fromTo(img, {
-          yPercent: -20,
+          yPercent: -30,
           ease: 'none'
         }, {
-          yPercent: 20,
+          yPercent: 30,
           ease: 'none'
         });
       });
 }
+
+export function imageHoverLayout(targetElements, overlayElement) {
+    //  gsap.set('.overlay-layout', { yPercent: 75, xPercent:  0 })
+    // const tooltips = document.querySelectorAll(tooltipElement);
+
+    // if (!tooltips.length) {
+    //     console.error('Tooltip elements not found');
+    //     return;
+    // }
+
+    // targetElements.forEach(targetElement => {
+    //     const target = targetElement.querySelector('.grid-image');
+    //     const tooltip = targetElement.querySelector('.overlay-layout');
+
+    //     if (!target || !tooltip) {
+    //         console.error('Target element or tooltip element not found');
+    //         return;
+    //     }
+
+    //     const alignTooltip = (event) => {
+    //         gsap.set(tooltip, { x: event.clientX, y: event.clientY });
+    //     };
+
+    //     target.addEventListener('mouseenter', () => {
+    //         document.addEventListener('mousemove', alignTooltip);
+    //         gsap.to(tooltip, { duration: 0.3, autoAlpha: 1, display: 'block' }); // Fade in and show the tooltip
+    //     });
+
+    //     target.addEventListener('mouseleave', () => {
+    //         document.removeEventListener('mousemove', alignTooltip);
+    //         gsap.to(tooltip, { duration: 0.3, autoAlpha: 0, onComplete: () => tooltip.style.display = 'none' }); // Fade out and hide the tooltip
+    //     });
+    // });
+}
+

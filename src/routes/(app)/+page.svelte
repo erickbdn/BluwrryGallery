@@ -52,13 +52,13 @@
             </ul> -->
             <ul>
                 <li class="item">
-                  <img src="{data.props.author[0].image.asset.url}">
+                  <img class="item-image" src="{data.props.author[0].image.asset.url}">
                   <a href="/AboutMe">01<span style="padding-left: 50px;">About Me</span></a></li>
                 <li class="item">
-                  <img src="{data.props.posts[0].image.asset.url}">
+                  <img class="item-image" src="{data.props.posts[0].image.asset.url}">
                   <a href="/Gallery">02<span style="padding-left: 50px;">Gallery</span></a></li>
                 <li class="item">
-                  <img src="{data.props.posts[1].image.asset.url}">    
+                  <img class="item-image" src="{data.props.posts[1].image.asset.url}">    
                   <a href="/Lightroom">03<span style="padding-left: 50px;">Lightroom</span></a></li>
             </ul>
         </nav>
@@ -192,13 +192,12 @@
             }
 
             .nav-links-container img {
-            position: absolute;
+            position: fixed;
+            top: 0;
+            left: 0;
             width: 300px;
             height: 400px;
             object-fit: cover;
-            transform: translateX(-50%) translateY(-50%);
-            top: 50%;
-            left: 50%;
             z-index: -10;
             opacity: 0;
             visibility: hidden;
