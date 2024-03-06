@@ -94,37 +94,44 @@ export function categoryAnim() {
       });
 }
 
-export function imageHoverLayout(targetElements, overlayElement) {
-    //  gsap.set('.overlay-layout', { yPercent: 75, xPercent:  0 })
-    // const tooltips = document.querySelectorAll(tooltipElement);
+export function initializeParallax() {
 
-    // if (!tooltips.length) {
-    //     console.error('Tooltip elements not found');
-    //     return;
-    // }
+    const gridItems = document.querySelectorAll('.hero-images');
+    
+    gridItems.forEach((item, index) => {
+        const yPercentRandomVal = gsap.utils.random(-1500, -500);
 
-    // targetElements.forEach(targetElement => {
-    //     const target = targetElement.querySelector('.grid-image');
-    //     const tooltip = targetElement.querySelector('.overlay-layout');
+        gsap.timeline()
+		.addLabel('start', 0)
+		.to(item, {
+            ease: 'none',
+            yPercent: yPercentRandomVal,
+			scrollTrigger: {
+                trigger: item,
+                start: 'top bottom',
+                end: 'top -120%',
+                scrub: true,
+            }
+        }, 'start');
+    });
+    
+   
+    gsap.to('.hero-wrapper', {
+      scrollTrigger: {
+          trigger: '.hero-wrapper',
+          start: 'top-=120vh  top',
+          end: '+=1200vh',
+          pin: true,
+      }
+  });
+    // Repeat the above for each image wrapper
+}
 
-    //     if (!target || !tooltip) {
-    //         console.error('Target element or tooltip element not found');
-    //         return;
-    //     }
-
-    //     const alignTooltip = (event) => {
-    //         gsap.set(tooltip, { x: event.clientX, y: event.clientY });
-    //     };
-
-    //     target.addEventListener('mouseenter', () => {
-    //         document.addEventListener('mousemove', alignTooltip);
-    //         gsap.to(tooltip, { duration: 0.3, autoAlpha: 1, display: 'block' }); // Fade in and show the tooltip
-    //     });
-
-    //     target.addEventListener('mouseleave', () => {
-    //         document.removeEventListener('mousemove', alignTooltip);
-    //         gsap.to(tooltip, { duration: 0.3, autoAlpha: 0, onComplete: () => tooltip.style.display = 'none' }); // Fade out and hide the tooltip
-    //     });
-    // });
+export function destroyParallax() {
+  // Clear GSAP animations or perform any necessary cleanup
+  gsap.registerPlugin(ScrollTrigger);
+  ScrollTrigger.getAll().forEach(trigger => {
+      trigger.kill();
+  });
 }
 

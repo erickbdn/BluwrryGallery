@@ -1,19 +1,27 @@
 <script>
-    import { initializeHoverEffect } from '$lib/utils/gsap'
+    import { initializeHoverEffect, initializeParallax, destroyParallax } from '$lib/utils/gsap'
     import { onMount, onDestroy } from "svelte";
     /** @type {import('./$types').PageData} */
 	export let data;
     onMount(() => {
         initializeHoverEffect();
+        initializeParallax();
     });
+
+    onDestroy(() => {
+        destroyParallax(); // Clean up GSAP animations when component is unmounted
+    });
+
 </script>
 
     <!-- This is Hero Section -->
     <section class="hero-wrapper">
         <h1 class="hero-title">CHRISTOPHER ARIEL'S WEBPAGE</h1>
-        {#each data.props.posts.slice(0, 5) as post, index}
+        {#each data.props.posts.slice(0, 6) as post, index}
             {#if post.image && post.image.asset.url}
-                <div class="image-wrapper-{index + 1}" style="background-image: url({post.image.asset.url}); background-size: cover;"></div>
+                <div class="image-wrapper-{index + 1} hero-images">
+                    <img class="hero-images-img" src="{post.image.asset.url}" alt="Image {index + 1}"/>
+                </div>
             {/if}
         {/each}
     </section>
@@ -69,44 +77,47 @@
         .hero-wrapper {
                display: grid;
                grid-template-columns: repeat(10, 1fr);
-               grid-template-rows: repeat(10, 1fr);
+               grid-template-rows: repeat(20, 1fr);
                grid-column-gap: 10px;
                grid-row-gap: 10px;
-               height: 80vh;
-               margin-bottom: 25vh;
+               position: relative;
                width: 90vw;
                margin: 0 auto; /* Center the container horizontally */
+               /* overflow: hidden */
+               height: 100vh;
            }
        
            .hero-title {
                grid-area: 3 / 1 / 9 / 11;
                text-align: center;
-                position: absolute;
-                top: 50%;
+               position: relative;
+                top: 100%;
                 left: 50%;
                 transform: translate(-50%, -50%);
                 margin: 0;
            }
-       
-           .image-wrapper-1 { 
-               grid-area: 1 / 7 / 4 / 9; 
-           }
-       
-           .image-wrapper-2 { 
-               grid-area: 5 / 8 / 7 / 11;
-           }
-       
-           .image-wrapper-3 { 
-               grid-area: 2 / 2 / 5 / 4;
-           }
-       
-           .image-wrapper-4 { 
-               grid-area: 7 / 5 / 11 / 7; 
-           }
-       
-           .image-wrapper-5 { 
-               grid-area: 6 / 1 / 9 / 4; 
-           }
+
+           .hero-images img {
+            position: relative;
+           
+            max-width: 50vh; 
+            max-height: 50vh;
+            width: auto;
+            height: auto; /* Maintain the aspect ratio of the image */
+            display: block; /* Ensure proper rendering as a block-level element */
+}
+
+.hero-images-img{
+    position: relative;
+    margin-top: 25vh;
+}
+           
+           .image-wrapper-1 { grid-area: 9 / 2 / 12 / 5;  position: relative;}
+           .image-wrapper-2 { grid-area: 13 / 1 / 17 / 4;  position: relative;}
+           .image-wrapper-3 { grid-area: 18 / 3 / 21 / 6;  position: relative;}
+           .image-wrapper-4 { grid-area: 18 / 8 / 21 / 11;  position: relative;}
+           .image-wrapper-5 { grid-area: 9 / 8 / 12 / 11;  position: relative;}
+           .image-wrapper-6 { grid-area: 13 / 7 / 17 / 10;  position: relative;}
        
            /* About Section Styling */
            .about-wrapper {

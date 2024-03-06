@@ -2,6 +2,18 @@
 
 </script>
 
+<header class="header">
+    <div class="title">
+        <a href="/">Christopher Ariel</a>
+    </div>
+    <nav class="navigation">
+        <a href="/AboutMe">About Me</a>
+        <a href="/Gallery">Gallery</a>
+        <a href="/Lightroom">LR Preset</a>
+        <a href="/studio">Studio</a>
+    </nav>
+</header>
+
 <style>
     .header {
         display: grid;
@@ -9,6 +21,10 @@
         grid-template-rows: repeat(3, 1fr);
         grid-column-gap: 10px;
         grid-row-gap: 10px;
+        z-index: 1;
+        position: sticky;
+    top: 0; /* Stick to the top of the viewport */
+    background-color: white; /* Optional: Set a background color */
     }
 
     .title { 
@@ -27,15 +43,3 @@
         text-align: center; /* Center align the anchor text */
     }
 </style>
-
-<header class="header">
-    <div class="title">
-        <a href="/">Christopher Ariel</a>
-    </div>
-    <nav class="navigation">
-        <a href="/AboutMe">About Me</a>
-        <a href="/Gallery">Gallery</a>
-        <a href="/Lightroom">LR Preset</a>
-        <a href="/studio">Studio</a>
-    </nav>
-</header>
