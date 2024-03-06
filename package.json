@@ -22,6 +22,7 @@
 	"type": "module",
 	"dependencies": {
 		"@sanity/client": "^3.4.1",
+		"@studio-freight/lenis": "^1.0.39",
 		"gsap": "^3.12.5",
 		"sanity": "^3.0.0-rc.3"
 	}
