@@ -1,17 +1,40 @@
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/all";
 
+gsap.registerPlugin(ScrollTrigger);
+
+export function hideNavBar() {
+  gsap.set('.header', { yPercent: 0 });
+  const showAnim = gsap.from('.header', { 
+    yPercent: -100,
+    paused: true,
+    duration: 0.35
+  }).progress(1);
+  
+  ScrollTrigger.create({
+    start: "top top",
+    end: "max",
+    onUpdate: (self) => {
+      self.direction === -1 ? showAnim.play() : showAnim.reverse()
+    }
+  });
+}
+
+export function destroyScrollTrigger() {
+  ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+}
+
 export function initializeHoverEffect() {
     gsap.set('.item-image', { yPercent: -50, xPercent: -50 })
     const items = document.querySelectorAll('.item');
 
     items.forEach((el) => {
         const image = el.querySelector('img'),
-        setX = gsap.quickSetter(image, "x", "px"),
-        setY = gsap.quickSetter(image, "y", "px"),
+        xTo = gsap.quickTo(image, "x", {duration: 0.5, ease: "power3"}),
+        yTo = gsap.quickTo(image, "y", {duration: 0.5, ease: "power3"}),
         align = e => {
-          setX(e.clientX);
-          setY(e.clientY);
+          xTo(e.clientX);
+          yTo(e.clientY);
         },
         startFollow = () => document.addEventListener("mousemove", align),
         stopFollow = () => document.removeEventListener("mousemove", align),
@@ -71,7 +94,7 @@ export function initThumbnailClickHandlers() {
         });
     }
 }
-gsap.registerPlugin(ScrollTrigger);
+
 export function categoryAnim() {
     gsap.utils.toArray('.img-container').forEach(container => {
         const img = container.querySelector('img');
@@ -85,10 +108,10 @@ export function categoryAnim() {
         });
       
         tl.fromTo(img, {
-          yPercent: -30,
+          yPercent: -50,
           ease: 'none'
         }, {
-          yPercent: 30,
+          yPercent: 50,
           ease: 'none'
         });
       });
@@ -119,8 +142,8 @@ export function initializeParallax() {
     gsap.to('.hero-wrapper', {
       scrollTrigger: {
           trigger: '.hero-wrapper',
-          start: 'top-=120vh  top',
-          end: '+=1200vh',
+          start: 'top-=162vh  top',
+          end: '+=1300vh',
           pin: true,
       }
   });
@@ -129,7 +152,6 @@ export function initializeParallax() {
 
 export function destroyParallax() {
   // Clear GSAP animations or perform any necessary cleanup
-  gsap.registerPlugin(ScrollTrigger);
   ScrollTrigger.getAll().forEach(trigger => {
       trigger.kill();
   });

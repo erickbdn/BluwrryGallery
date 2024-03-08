@@ -1,6 +1,5 @@
 <script>
     export let data;
-    console.log(data)
     import { onMount } from 'svelte';
 
 
@@ -36,8 +35,8 @@
 <section class="gallery-grid">
   <div class="masonry-grid">
       {#each data.props.posts as post, index}
-          <div class="grid-item" on:click={() => showOverlayLayout(index)}> <!-- Pass index -->
-              <img src="{post.image.asset.url}" alt="{post.title}" class="grid-image" />
+          <div class="grid-item"> <!-- Pass index -->
+              <img src="{post.image.asset.url}" alt="{post.title}" class="grid-image" on:click={() => showOverlayLayout(index)} />
           </div>
       {/each}
   </div>
@@ -105,6 +104,9 @@
 .gallery-grid {
   position: relative; /* Ensure proper stacking order with z-index */
     z-index: 1; /* Set a lower z-index for the gallery-grid */
+    height: 60vh;
+    width: 60vw;
+        margin: 0 auto; /* Center the container horizontally */
 }
 .masonry-grid {
   display: grid;
@@ -115,12 +117,15 @@
 
 .grid-item {
   grid-column: span 2; /* Each grid item spans 2 columns */
-  overflow: hidden;
 }
 
 .grid-image {
     max-width: 100%;
   height: auto;
+  -webkit-box-shadow: 0px 25px 21px -9px rgba(0,0,0,0.2);
+-moz-box-shadow: 0px 25px 21px -9px rgba(0,0,0,0.2);
+box-shadow: 0px 25px 21px -9px rgba(0,0,0,0.2);
+cursor: pointer;
 }
 
 .overlay-layout {

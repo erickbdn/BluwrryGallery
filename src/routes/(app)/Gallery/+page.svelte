@@ -58,8 +58,8 @@ onMount(() => {
         grid-column-gap: 10px;
         grid-row-gap: 10px;
         height: 90vh;
-        width: 80vw;
-        overflow: hidden;
+       overflow: hidden;
+       width: 90vw;
         margin: 0 auto; /* Center the container horizontally */
     }
 
@@ -134,6 +134,12 @@ onMount(() => {
     }
 
     /* styling for embedded gsap section */
+
+    .category-section {
+        width: 90vw;
+        margin: 0 auto; /* Center the container horizontally */
+    }
+
    .category-menu-container {
   display: flex;
   align-items: stretch;

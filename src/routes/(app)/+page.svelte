@@ -61,13 +61,25 @@
             <ul>
                 <li class="item">
                   <img class="item-image" src="{data.props.author[0].image.asset.url}">
-                  <a href="/AboutMe">01<span style="padding-left: 50px;">About Me</span></a></li>
+                  <a href="/AboutMe">
+                    <span>01</span>
+                    <span>About Me</span>
+                  </a>
+                </li>
                 <li class="item">
                   <img class="item-image" src="{data.props.posts[0].image.asset.url}">
-                  <a href="/Gallery">02<span style="padding-left: 50px;">Gallery</span></a></li>
+                  <a href="/Gallery">
+                    <span>02</span>
+                    <span>Gallery</span>
+                  </a>
+                </li>
                 <li class="item">
                   <img class="item-image" src="{data.props.posts[1].image.asset.url}">    
-                  <a href="/Lightroom">03<span style="padding-left: 50px;">Lightroom</span></a></li>
+                  <a href="/Lightroom">
+                    <span>03</span>
+                    <span>Lightroom</span>
+                  </a>
+                </li>
             </ul>
         </nav>
     </section>
@@ -84,7 +96,7 @@
                width: 90vw;
                margin: 0 auto; /* Center the container horizontally */
                /* overflow: hidden */
-               height: 100vh;
+               height: 90vh;
            }
        
            .hero-title {
@@ -95,16 +107,17 @@
                 left: 50%;
                 transform: translate(-50%, -50%);
                 margin: 0;
+                font-size: 4.5rem;
            }
 
            .hero-images img {
             position: relative;
-           
             max-width: 50vh; 
             max-height: 50vh;
             width: auto;
             height: auto; /* Maintain the aspect ratio of the image */
             display: block; /* Ensure proper rendering as a block-level element */
+            transform: scale(0.8);
 }
 
 .hero-images-img{
@@ -113,11 +126,11 @@
 }
            
            .image-wrapper-1 { grid-area: 9 / 2 / 12 / 5;  position: relative;}
-           .image-wrapper-2 { grid-area: 13 / 1 / 17 / 4;  position: relative;}
-           .image-wrapper-3 { grid-area: 18 / 3 / 21 / 6;  position: relative;}
-           .image-wrapper-4 { grid-area: 18 / 8 / 21 / 11;  position: relative;}
-           .image-wrapper-5 { grid-area: 9 / 8 / 12 / 11;  position: relative;}
-           .image-wrapper-6 { grid-area: 13 / 7 / 17 / 10;  position: relative;}
+           .image-wrapper-2 { grid-area: 13 / 1 / 16 / 4;  position: relative;z-index: -1;}
+           .image-wrapper-3 { grid-area: 17 / 3 / 20 / 6;  position: relative;z-index: -1;}
+           .image-wrapper-4 { grid-area: 9 / 7 / 12 / 10;  position: relative;z-index: -1;}
+           .image-wrapper-5 { grid-area: 13 / 6 / 16 / 9;  position: relative;}
+           .image-wrapper-6 { grid-area: 17 / 8 / 20 / 11;  position: relative; z-index: -1;}
        
            /* About Section Styling */
            .about-wrapper {
@@ -126,39 +139,53 @@
                grid-template-rows: repeat(10, 1fr);
                grid-column-gap: 10px;
                grid-row-gap: 10px;
-               height: 80vh;
-               margin-bottom: 25vh;
+               height: 60vh;
                width: 90vw;
-               margin: 0 auto; /* Center the container horizontally */
+               margin: -5vh auto 10vh; /* Center the container horizontally */
+             scroll-snap-type: y mandatory;
            }
        
            .about-title {
                grid-area: 1 / 3 / 4 / 10;
+               font-size: 5em;
+               color: white;
+               -webkit-text-stroke: 1px black;
+               text-align: center;
            }
        
            .image-wrapper {
             z-index: -1;
                grid-area: 2 / 1 / 11 / 6;
-               width: 100%; /* Ensure the wrapper takes up the entire grid cell */
-                height: 100%; /* Ensure the wrapper takes up the entire grid cell */
-                overflow: hidden; /* Hide any overflow from the image */
            }
 
            .image-wrapper img {
-                width: 100%; /* Make the image fill the width of the wrapper */
-                height: auto; /* Let the height adjust automatically based on the image */
+                width: 100%; /* Ensure the wrapper takes up the entire grid cell */
+                height: 100%; /* Ensure the wrapper takes up the entire grid cell */
+                overflow: hidden; /* Hide any overflow from the image */
+                object-fit: cover;
            }
        
            .about-me-name {
                grid-area: 6 / 6 / 9 / 11;
+               font-size: 2em;
+               margin-left: 7rem;
            }
        
            .about-me-description {
                grid-area: 6 / 6 / 11 / 11;
+               display: flex;
+               justify-content: center; /* Align horizontally */
+               align-items: center; /* Align vertically */
+               margin-left: 7rem;
            }
        
            .icons-wrapper {
                grid-area: 10 / 6 / 11 / 11;
+               display: flex;
+               justify-content: center; /* Align horizontally */
+               align-items: center; /* Align vertically */
+               gap: 2rem;
+              
            }
 
            .social-icon {
@@ -174,9 +201,8 @@
                grid-column-gap: 10px;
                grid-row-gap: 10px;
                height: 80vh;
-               margin-bottom: 25vh;
                width: 90vw;
-               margin: 0 auto; /* Center the container horizontally */
+               margin: 0 auto -5vh; /* Center the container horizontally */
            }
        
            .nav-links-container { 
@@ -197,9 +223,12 @@
                 text-align: center;
                 -webkit-text-stroke: 1px black;
                 color: transparent;
-                margin-bottom: 80px;
                 z-index: 1;
-                padding: 20px;
+                
+            }
+
+            .nav-links-container a {
+                text-decoration: none;
             }
 
             .nav-links-container img {
@@ -209,11 +238,40 @@
             width: 300px;
             height: 400px;
             object-fit: cover;
-            z-index: -10;
+            z-index: -1;
             opacity: 0;
             visibility: hidden;
             pointer-events: none;
 }
+
+.item {
+    display: flex;
+}
+
+.item a {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; 
+    text-decoration: none;
+    opacity: 0.5;
+    color: inherit
+}
+
+.item a:hover {
+    opacity: 1;
+    color: grey;
+    transition: opacity 1s ease-out;
+    -webkit-transition: opacity 1s ease-out;  
+    -moz-transition: opacity 1s ease-in-out;   
+    transition: color 1s ease-out;
+    -webkit-transition:color 1s ease-out;  
+    -moz-transition: color 1s ease-in-out;  
+    mix-blend-mode: difference;
+}
+
+/* .item a span {
+  margin-left: 55vw;
+} */
        
            /* .nav-image-container { 
                grid-area: 1 / 2 / 8 / 4; 
