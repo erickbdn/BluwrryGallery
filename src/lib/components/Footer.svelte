@@ -3,7 +3,7 @@
 </script>
 
 <footer class="footer">
-    <div class="footer-title">L<span class="stretched-letter">E</span>T'S <i>COLLABORATE</i></div>
+    <div class="footer-title"><h1>LET'S <i>COLLABORATE</i></h1></div>
     <ul>
         <li class="footer-email"><a href="/">email@gmail.com</a></li>
         <li class="footer-linkedin"><a href="/">linkedinurl.com</a></li>
@@ -23,7 +23,7 @@
     grid-column-gap: 10px;
     grid-row-gap: 10px;
   height: 50vh;
-    margin-bottom: 4vh;
+    margin-bottom: 10vh;
     }
 
     .footer ul {
@@ -32,7 +32,7 @@
     flex-direction: column; /* Stack list items vertically */
     align-items: flex-start; /* Align items to the start (left) */
     justify-content: flex-end; /* Align items to the bottom */
-    margin-left: 2vw;
+    margin-left: 8vw;
     }
 
     .footer ul li {
@@ -41,7 +41,7 @@
 
     .footer ul li a{
         text-decoration: none;
-        font-size: 1.15em;
+        font-size: 1em;
         color: black;
        opacity: 0.5;
     }
@@ -49,30 +49,20 @@
     .footer ul li a:hover{
         color: black;
        opacity: 1;
+       font-weight: bolder;
+       transition: 0.3s;
     }
 
     .footer-title { 
         grid-area: 2 / 1 / 5 / 11;
-        font-size: 8em;
+        font-size: 4em;
         text-align: center;
-        margin-left: 2vw;
     }
-
-    .stretched-letter {
-        display:inline-block;
-    -webkit-transform:scale(2.5,1); /* Safari and Chrome */
-    -moz-transform:scale(2.5,1); /* Firefox */
-    -ms-transform:scale(2.5,1); /* IE 9 */
-    -o-transform:scale(2.5,1); /* Opera */
-    transform:scale(2.5,1); /* W3C */
-    margin-left: 0.4em;
-    margin-right: 0.4em;
-  }
-
+    
     .collab { 
         grid-area: 10 / 6 / 11 / 11;
-        font-size: 1.5em;
         text-align: right;
-        margin-right: 2vw;
+        margin-right: 8vw;
+        font-size: 1.2em;
         }
 </style>

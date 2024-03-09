@@ -108,6 +108,7 @@
                 transform: translate(-50%, -50%);
                 margin: 0;
                 font-size: 4.5rem;
+                font-weight: 500;
            }
 
            .hero-images img {
@@ -148,8 +149,9 @@
            .about-title {
                grid-area: 1 / 3 / 4 / 10;
                font-size: 5em;
+               margin-top: 0.5em;
                color: white;
-               -webkit-text-stroke: 1px black;
+              mix-blend-mode: difference;
                text-align: center;
            }
        
@@ -242,6 +244,7 @@
             opacity: 0;
             visibility: hidden;
             pointer-events: none;
+            scale: 0.6;
 }
 
 .item {

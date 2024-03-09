@@ -38,7 +38,7 @@ afterNavigate(() => {
 border-bottom: 1px;
 border-style: outset;
 width: 100vw;
-background-color: white;
+background-color: #f4f3ee;
     }
     
     .header a {
@@ -49,7 +49,7 @@ background-color: white;
     .title { 
         grid-area: 1 / 2 / 4 / 5; 
         align-self: end;
-        font-size: 2rem;
+        font-size: 1.5rem;
     }
 
     .navigation { 
@@ -62,5 +62,6 @@ background-color: white;
 
     .navigation a {
         text-align: center; /* Center align the anchor text */
+        font-size: 1em;
     }
 </style>

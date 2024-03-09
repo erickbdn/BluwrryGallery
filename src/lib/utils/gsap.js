@@ -30,15 +30,15 @@ export function initializeHoverEffect() {
 
     items.forEach((el) => {
         const image = el.querySelector('img'),
-        xTo = gsap.quickTo(image, "x", {duration: 0.5, ease: "power3"}),
-        yTo = gsap.quickTo(image, "y", {duration: 0.5, ease: "power3"}),
+        xTo = gsap.quickTo(image, "x", {duration: 0.8, ease: "power3"}),
+        yTo = gsap.quickTo(image, "y", {duration: 0.8, ease: "power3"}),
         align = e => {
           xTo(e.clientX);
           yTo(e.clientY);
         },
         startFollow = () => document.addEventListener("mousemove", align),
         stopFollow = () => document.removeEventListener("mousemove", align),
-        fade = gsap.to(image, {autoAlpha: 1, ease: "none", paused: true, onReverseComplete: stopFollow});
+        fade = gsap.to(image, {autoAlpha: 1, scale: 0.8, ease: "none", duration: 0.3, paused: true, onReverseComplete: stopFollow});
   
   el.addEventListener('mouseenter', (e) => {
     fade.play();
