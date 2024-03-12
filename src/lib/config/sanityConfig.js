@@ -105,6 +105,105 @@ export default {
                         title: 'Image'
                     }
                 ]
+            },
+            {
+                type: 'document',
+                name: 'authorData',
+                title: 'AuthorData',
+                fields: [
+                    {
+                        type: 'text',
+                        name: 'profileDesc',
+                        title: 'ProfileDesc'
+                    },
+                    {
+                        type: 'array',
+                        name: 'experiences',
+                        title: 'Experiences',
+                        of: [
+                          {
+                            type: 'object',
+                            fields: [
+                              {
+                                type: 'string',
+                                name: 'company',
+                                title: 'Company'
+                              },
+                              {
+                                type: 'string',
+                                name: 'date',
+                                title: 'Date'
+                              },
+                              {
+                                type: 'text',
+                                name: 'desc',
+                                title: 'Desc'
+                              },
+                              {
+                                type: 'array',
+                                name: 'jobDesc',
+                                title: 'JobDesc',
+                                of: [{ type: 'text' }] // Define an array of text items (bullet points)
+                              },
+                              // Add more fields as needed for each experience
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        type: 'array',
+                        name: 'educations',
+                        title: 'Educations',
+                        of: [
+                          {
+                            type: 'object',
+                            fields: [
+                              {
+                                type: 'string',
+                                name: 'place',
+                                title: 'Place'
+                              },
+                              {
+                                type: 'text',
+                                name: 'description',
+                                title: 'Description'
+                              },
+                              {
+                                type: 'array',
+                                name: 'activity',
+                                title: 'Activity',
+                                of: [{ type: 'text' }] // Define an array of text items (bullet points)
+                              },
+                              // Add more fields as needed for each experience
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        type: 'array',
+                        name: 'achievements',
+                        title: 'Achievements',
+                        of: [
+                          {
+                            type: 'object',
+                            fields: [
+                              {
+                                type: 'string',
+                                name: 'title',
+                                title: 'Title'
+                              },
+                              {
+                                type: 'array',
+                                name: 'activity',
+                                title: 'Activity',
+                                of: [{ type: 'text' }] // Define an array of text items (bullet points)
+                              },
+                              // Add more fields as needed for each experience
+                            ]
+                          }
+                        ]
+                      },
+                ]
             }
         ]
     }
