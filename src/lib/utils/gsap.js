@@ -108,10 +108,10 @@ export function categoryAnim() {
         });
       
         tl.fromTo(img, {
-          yPercent: -50,
+          yPercent: -15,
           ease: 'none'
         }, {
-          yPercent: 50,
+          yPercent: 15,
           ease: 'none'
         });
       });

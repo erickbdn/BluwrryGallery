@@ -38,7 +38,7 @@ onMount(() => {
     {#each data.props.posts.filter((post, index, array) => array.findIndex(p => p.category === post.category) === index) as post}
     <div class="category-menu-container">
         <div class="category-text">
-            <div class="category-title"><a href='Gallery/{post.category}'>{post.category}</a></div>
+            <div class="category-title"><a href='Gallery/{post.category}'><h2>{post.category}</h2></a></div>
             <div class="category-desc">{post.description}</div>
         </div>
         <div class="category-image"> 
@@ -61,6 +61,7 @@ onMount(() => {
        overflow: hidden;
        width: 90vw;
         margin: 0 auto; /* Center the container horizontally */
+        margin-bottom: 20vh;
     }
 
     .featured-image { 
@@ -151,6 +152,23 @@ onMount(() => {
 .category-text {
   flex: 1; /* Take up 50% of the width */
   padding: 0 20px; /* Add padding as needed */
+  padding-top: 15vh;
+}
+
+.category-title {
+    font-size: 1.5rem;
+    text-align: left;
+    padding-left: 10rem;
+}
+
+.category-desc {
+    text-align: left;
+    padding-left: 10rem;
+}
+
+.category-title a {
+    text-decoration: none;
+    color: inherit;
 }
 
   .category-image {

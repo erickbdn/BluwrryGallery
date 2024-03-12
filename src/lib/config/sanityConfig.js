@@ -54,6 +54,23 @@ export default {
             },
             {
                 type: 'document',
+                name: 'category',
+                title: 'Category',
+                fields: [
+                    {
+                        type: 'string',
+                        name: 'name',
+                        title: 'Name'
+                    },
+                    {
+                        type: 'text',
+                        name: 'description',
+                        title: 'Description'
+                    }
+                ]
+            },
+            {
+                type: 'document',
                 name: 'post',
                 title: 'Post',
                 fields: [
@@ -68,9 +85,10 @@ export default {
                         title: 'Description'
                     },
                     {
-                        type: 'string',
+                        type: 'reference',
                         name: 'category',
-                        title: 'Category'
+                        title: 'Category',
+                        to: [{type: 'category'}] // Reference to the category schema
                     },
                     {
                         type: 'image',
