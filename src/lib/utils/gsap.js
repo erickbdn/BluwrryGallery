@@ -157,3 +157,19 @@ export function destroyParallax() {
   });
 }
 
+export function aboutMeStickyImage() {
+  const aboutMeImageWrapper = document.querySelector('.about-me-image-wrapper');
+    
+  gsap.to(aboutMeImageWrapper, {
+      y: 0, // Stick to the top
+      scrollTrigger: {
+          trigger: '.about-me-image-wrapper',
+          start: '-215vh top', // Start sticking when top of the section hits top of the viewport
+          end: 'bottom+=40% top', // Stop sticking when bottom of the section hits top of the viewport
+          pin: true, // Pin the element
+          pinSpacing: false, // Don't create any spacing when pinned
+          scrub: true,
+      }
+  });
+}
+
