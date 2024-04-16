@@ -35,11 +35,11 @@ onMount(() => {
     <div class="category-section-title">
         <h2>Category</h2>
     </div>
-    {#each data.props.posts.filter((post, index, array) => array.findIndex(p => p.category === post.category) === index) as post}
+    {#each data.props.posts.filter((post, index, array) => array.findIndex(p => p.category.name === post.category.name) === index) as post}
     <div class="category-menu-container">
         <div class="category-text">
-            <div class="category-title"><a href='Gallery/{post.category}'><h2>{post.category}</h2></a></div>
-            <div class="category-desc">{post.description}</div>
+            <div class="category-title"><a href='Gallery/{post.category.name}'><h2>{post.category.name}</h2></a></div>
+            <div class="category-desc">{post.category.description}</div>
         </div>
         <div class="category-image"> 
             <div class="img-container">
@@ -126,6 +126,7 @@ onMount(() => {
 
     .featured-title { 
         grid-area: 1 / 1 / 2 / 4; 
+        font-size: 3rem;
     }
 
     .featured-photo-title { 
@@ -139,6 +140,12 @@ onMount(() => {
     .category-section {
         width: 90vw;
         margin: 0 auto; /* Center the container horizontally */
+    }
+
+    .category-section-title {
+        text-align: right;
+        font-size: 3rem;
+        margin-bottom: 5vh;
     }
 
    .category-menu-container {
@@ -156,14 +163,14 @@ onMount(() => {
 }
 
 .category-title {
-    font-size: 1.5rem;
+    font-size: 2rem;
     text-align: left;
-    padding-left: 10rem;
+    padding-left: 5rem;
 }
 
 .category-desc {
     text-align: left;
-    padding-left: 10rem;
+    padding-left: 5rem;
 }
 
 .category-title a {

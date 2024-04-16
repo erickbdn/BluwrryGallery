@@ -1,112 +1,69 @@
 <script>
     export let data;
-    import { onMount } from 'svelte';
+console.log(data)
+import { onMount, onDestroy } from "svelte";
+import { carousel } from '$lib/utils/gsap'
 
+onMount(() => {
+  carousel();
+})
 
-    let currentIndex = null;
-    let overlayVisible = false; // Variable to track overlay visibility
-
-    function showOverlayLayout(index) {
-        currentIndex = index;
-        overlayVisible = true;
-        updatePhotos();
-    }
-
-    function showNextImage() {
-        currentIndex = (currentIndex + 1) % data.props.posts.length;
-        updatePhotos();
-    }
-
-    function showPreviousImage() {
-        currentIndex = (currentIndex - 1 + data.props.posts.length) % data.props.posts.length;
-        updatePhotos();
-    }
-
-    function updatePhotos() {
-        // Logic to update the source of current, previous, and next photos based on currentIndex
+// let activeIndex = null; // Store the index of the active slide
+function toggleOverlayLayout(index) {
+        const overlayLayout = document.querySelector('.overlay-layout');
+        overlayLayout.style.visibility = 'visible';
+        carousel(index); // Pass the clicked index to initialize the carousel
+        // activeIndex = index; // Set the index of the active slide
     }
 
     function closeOverlayLayout() {
-        currentIndex = null; // Reset currentIndex to hide the overlay layout
-        overlayVisible = false; // Hide the overlay layout
+        const overlayLayout = document.querySelector('.overlay-layout');
+        overlayLayout.style.visibility = 'hidden';
+        // activeIndex = null;
     }
-</script>
 
+</script>
+<h1 class="category-title">{data.props.posts[0].category.name}</h1>
 <section class="gallery-grid">
   <div class="masonry-grid">
       {#each data.props.posts as post, index}
-          <div class="grid-item"> <!-- Pass index -->
-              <img src="{post.image.asset.url}" alt="{post.title}" class="grid-image" on:click={() => showOverlayLayout(index)} />
+          <div class="grid-item">
+              <img src="{post.image.asset.url}" alt="{post.title}" class="grid-image" on:click={() => toggleOverlayLayout(index)}/>
           </div>
       {/each}
   </div>
 </section>
 
-<div class="overlay-layout" style="{overlayVisible ? 'display: block;' : 'display: none;'}"> <!-- Hide by default -->
-  <button class="close-button" on:click={closeOverlayLayout}>x</button> <!-- Close button -->
-  <div class="photo-list">
-    <h2 class="current-title">{currentIndex !== null ? data.props.posts[currentIndex].title : ''}</h2>
-    <div class="detail-list">
-      {currentIndex !== null ? data.props.posts[currentIndex].description: ''}
+<div class="overlay-layout">
+  <button class="close-button" on:click={closeOverlayLayout}>✖</button>
+  <div class="wrapper">
+    <div class="carousel-items">
+      {#each data.props.posts as post, index}
+      <div class="carousel-item">
+        <h1 class="carousel-item-title">{post.title}</h1>
+        <img src="{post.image.asset.url}" alt="{post.title}">
+        <p class="carousel-item-description">{post.description}</p>
       </div>
-      <div class="photo-wrapper">
-          <div class="photo current-photo">
-              <div class="photo-wrapper-image">
-                  <img src={currentIndex !== null ? data.props.posts[currentIndex].image.asset.url : ''} alt="" />
-              </div>
-          </div>
-
-          <div class="photo next-photo">
-              <div class="photo-wrapper-image">
-                  <img src={currentIndex !== null ? data.props.posts[(currentIndex + 1) % data.props.posts.length].image.asset.url : ''} alt="" />
-              </div>
-          </div>
-
-          <div class="photo previous-photo">
-              <div class="photo-wrapper-image">
-                  <img src={currentIndex !== null ? data.props.posts[(currentIndex - 1 + data.props.posts.length) % data.props.posts.length].image.asset.url : ''} alt="" />
-              </div>
-          </div>
-      </div>
-      <button class="left-button" on:click={showPreviousImage}>
-        <div class="icon">
-            <p>left</p>
-        </div>
-    </button>
-      <button class="right-button" on:click={showNextImage}>
-          <div class="icon">
-              <p>right</p>
-          </div>
-      </button>
+      {/each}
+    </div>
   </div>
+  <div id="nextButton">→</div>
+  <div id="prevButton">←</div>
 </div>
 
-
-  <!-- <div class="detail-list">
-      <div class="detail-wrapper">
-          <div class="detail current-detail">
-              <p>current</p>
-          </div>
-
-          <div class="detail next-detail">
-            <p>next</p>
-          </div>
-
-          <div class="detail previous-detail">
-            <p>prev</p>
-          </div>
-      </div>
-  </div>
-</div> -->
-  
   <style>
+
+    .category-title {
+      text-align: center;
+      margin-bottom: 5vh;
+    }
 
 .gallery-grid {
   position: relative; /* Ensure proper stacking order with z-index */
     z-index: 1; /* Set a lower z-index for the gallery-grid */
-    height: 60vh;
+    flex-grow: 1;
     width: 60vw;
-        margin: 0 auto; /* Center the container horizontally */
+    margin: 0 auto; /* Center the container horizontally */
 }
 .masonry-grid {
   display: grid;
@@ -136,100 +93,115 @@ cursor: pointer;
     width: 100vw; /* Occupy full width of the viewport */
     height: 100vh; /* Occupy 80% of the viewport height */
     z-index: 2; /* Set a higher z-index for the overlay-layout */
-    background: rgba(255, 255, 255, 0.192);
-
+    background: rgba(0, 0, 0, 0.36);
 backdrop-filter: blur(20px);
 -webkit-backdrop-filter: blur(20px);
+padding-top: 5vh;
+visibility: hidden;
 }
 
 .close-button {
-  width: 16px;
-  height: 16px;
-  position: relative;
-  left: 80vw;
+  grid-area: 2 / 9 / 3 / 10;
+  width: 2rem;
+  height: 2rem;
+  position: absolute;
+  z-index: 2;
+  font-size: 1.5rem;
+  border: 0;
+  background: transparent;
+  margin-left: 85vw;
+  color: white;
 }
 
-.current-title {
-  grid-area: 1 / 2 / 4 / 10; 
-  z-index: 1;
-  font-size: 8rem;
+.close-button:hover {
+  cursor: pointer;
+}
+
+.wrapper {
+  position: absolute;
+  margin-top: 12vh;
+}
+
+.wrapper::after {
+  content: "";
+  position: absolute;
+}
+
+.carousel-items {
+  position: relative;
+  margin-left: 10vw;
+}
+
+.carousel-item {
+  position: absolute;
+  width: 70vw;
+  display: grid;
+grid-template-columns: repeat(8, 1fr);
+grid-template-rows: repeat(8, 1fr);
+grid-column-gap: 10px;
+grid-row-gap: 10px;
+}
+
+.carousel-item img {
+  max-height: 60vh; /* Set the maximum height */
+  width: auto; /* Let the width scale according to the aspect ratio */
+  grid-area: 1 / 1 / 9 / 5;
+  transition: transform 0.5s ease;
+}
+
+.carousel-item img:hover {
+  z-index: 99;
+  transform: scale(1.2);
+}
+
+.carousel-item-title {
+  grid-area: 1 / 1 / 3 / 9;
+  z-index: 2;
+  mix-blend-mode: difference;
+  color: white;
+  font-size: 3em;
+  margin-top: -5vh;
+  margin-left: -5vw;
+}
+
+.carousel-item-description {
+  margin-left: 10em;
+  z-index: 0;
+  grid-area: 5 / 5 / 6 / 9; 
+  font-size: 1.15em;
+  line-height: 1.6;
+  text-align: left;
   color: white;
   mix-blend-mode: difference;
 }
 
-.photo-list {
-  display: grid;
-grid-template-columns: repeat(10, 1fr);
-grid-template-rows: repeat(10, 1fr);
-grid-column-gap: 10px;
-grid-row-gap: 10px;
-height: 80vh;
+#nextButton {
+  cursor: pointer;
+  position: absolute;
+  top: 70vh;
+  left: 75vw;
+  height: 2em;
+  width: 2em;
+  text-align: center;
+  user-select: none;
+  font-size: 2.5em;
+  color: white;
 }
 
-.photo-wrapper {
-  grid-area: 3 / 1 / 9 / 11;
-  display: grid;
-grid-template-columns: repeat(10, 1fr);
-grid-template-rows: repeat(6, 1fr);
-grid-column-gap: 0px;
-grid-row-gap: 0px;
-height: 100%;
+#prevButton {
+  cursor: pointer;
+  position: absolute;
+  top: 70vh;
+  left: 70vw;
+  height: 2em;
+  width: 2em;
+  text-align: center;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  font-size: 2.5em;
+  color: white;
 }
-
-.current-photo {
-  grid-area: 1 / 3 / 7 / 9;
-  position: relative; /* Ensure image respects container size */
-        height: 150%;
-        top: -15%;
-        display: flex; /* Use flexbox for centering */
-    justify-content: center; /* Center horizontally */
-}
-
-.current-photo img {
-    max-width: 100%; /* Ensure the image doesn't exceed its container width */
-    max-height: 100%; /* Ensure the image doesn't exceed its container height */
-    object-fit: contain; /* Maintain aspect ratio and fit within container */
-  }
-
-.next-photo {
-  grid-area: 1 / 10 / 7 / 11;
-  position: relative; /* Ensure image respects container size */
-        width: 100%;
-        height: 100%;
-}
-
-.next-photo img {
-  position: absolute; /* Position the image within its container */
-    width: 100%; /* Ensure image fills container horizontally */
-    height: 100%; /* Ensure image fills container vertically */
-    object-fit: cover; /* Maintain aspect ratio and cover entire container */
-}
-
-.previous-photo {
-  grid-area: 1 / 1 / 7 / 2;
-  position: relative; /* Ensure image respects container size */
-        width: 100%;
-        height: 100%;
-}
-
-.previous-photo img {
-  position: absolute; /* Position the image within its container */
-    width: 100%; /* Ensure image fills container horizontally */
-    height: 100%; /* Ensure image fills container vertically */
-    object-fit: cover; /* Maintain aspect ratio and cover entire container */
-}
-
-.left-button {
-  grid-area: 9 / 2 / 10 / 3; 
-}
-
-.right-button {
-  grid-area: 9 / 9 / 10 / 10;
-}
-
-.detail-list {
-  grid-area: 9 / 3 / 11 / 9;
-  position: relative;
-  top: 120%;
-}
-  </style>
+</style>

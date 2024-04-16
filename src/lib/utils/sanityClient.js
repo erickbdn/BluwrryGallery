@@ -14,7 +14,10 @@ export async function loadPost({ params }) {
     const data = await client.fetch(`*[_type == "post"] { 
       title,
       description,
-      category,
+      "category": category-> {
+        name,
+        description
+      },
       image {
         asset -> {
           url

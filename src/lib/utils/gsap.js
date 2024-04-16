@@ -173,3 +173,49 @@ export function aboutMeStickyImage() {
   });
 }
 
+export function carousel(startIndex = 0) {
+  const prevButton = document.querySelector("#prevButton");
+  const nextButton = document.querySelector("#nextButton");
+
+  const items = document.querySelectorAll(".carousel-item");
+
+  if (items.length <= 1) {
+    // Hide prev and next buttons
+    prevButton.style.display = "none";
+    nextButton.style.display = "none";
+    return; // Exit the function
+  }
+  
+  let boxWidth = 1200;
+  let wrapWidth = (items.length - 1) * boxWidth;
+
+  let animatePrev = animateCarousel.bind(prevButton, boxWidth);
+  let animateNext = animateCarousel.bind(nextButton,  -boxWidth);
+
+  gsap.set(items, {
+    x: function(i) {
+        return (i - startIndex) * boxWidth;
+    }
+});
+
+  prevButton.addEventListener("click", animatePrev);
+  nextButton.addEventListener("click", animateNext);
+
+  function animateCarousel(delta) {
+    gsap.to(items, {
+      duration: 0.7,
+      ease: "power4.inOut", 
+      x: function(i, target) {
+        let x = Math.round(gsap.getProperty(target, "x") / boxWidth) * boxWidth;
+        return x + delta;
+      },
+      modifiers: {
+        x: function(x) {
+          x = gsap.utils.wrap(-boxWidth, wrapWidth, parseInt(x));
+          
+          return x + "px";
+        }
+      }
+    });
+  }
+}

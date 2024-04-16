@@ -5,7 +5,7 @@ export async function load ({parent, params}) {
     const { category } = params;
 
     // Filter the posts based on the category
-    const filteredPosts = data.props.posts.filter(post => post.category === category);
+    const filteredPosts = data.props.posts.filter(post => post.category.name === category);
 
     // Return the filtered data
     return {
