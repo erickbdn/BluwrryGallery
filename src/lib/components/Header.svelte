@@ -9,14 +9,21 @@ afterNavigate(() => {
   beforeNavigate(() => {
     destroyScrollTrigger();
   })
+  let showNav = false;
 
+function toggleNav() {
+  showNav = !showNav;
+}
 </script>
 
 <header class="header">
     <div class="title">
         <a href="/">Christopher Ariel</a>
     </div>
-    <nav class="navigation">
+    <div class="nav-toggle" on:click={toggleNav}>
+        <p>≡</p>
+    </div>
+    <nav class="navigation" class:show={showNav}>
         <a href="/AboutMe">About Me</a>
         <a href="/Gallery">Gallery</a>
         <a href="/Lightroom">LR Preset</a>
@@ -63,5 +70,49 @@ background-color: #f4f3ee;
     .navigation a {
         text-align: center; /* Center align the anchor text */
         font-size: 1em;
+    }
+
+    .nav-toggle {
+        display: none; /* Initially hide hamburger button */
+        cursor: pointer;
+    }
+    
+    .nav-toggle .line {
+        width: 30px;
+        height: 3px;
+        background-color: black;
+        margin: 5px 0;
+    }
+
+    /*tablet**/
+    @media screen and (max-width: 1024px) and (min-width: 769px) {
+    .navigation {
+        grid-column-gap: 0px;
+    }
+
+    .nav-toggle {
+        display: none; /* Hide hamburger button on tablets */
+    }
+}
+
+    /*mobile*/
+    @media screen and (max-width: 767px) {
+        .navigation {
+            display: none; /* Hide navigation on mobile */
+        }
+
+        .nav-toggle {
+            display: flex; /* Show hamburger button on mobile */
+        }
+
+        .navigation.show {
+            display: flex; /* Show navigation when .show class is present */
+            flex-direction: column;
+            position: absolute;
+            top: 70px; /* Adjust based on header height */
+            right: 0;
+            background-color: #f4f3ee;
+            padding: 20px;
+        }
     }
 </style>

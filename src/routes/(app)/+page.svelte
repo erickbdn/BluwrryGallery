@@ -3,6 +3,7 @@
     import { onMount, onDestroy } from "svelte";
     /** @type {import('./$types').PageData} */
 	export let data;
+    
     onMount(() => {
         initializeHoverEffect();
         initializeParallax();
@@ -111,9 +112,14 @@
                 font-weight: 500;
            }
 
+           .hero-images {
+            display: grid;
+    place-items: center;
+           }
+
            .hero-images img {
             position: relative;
-            max-width: 50vh; 
+            max-width: 100%; 
             max-height: 50vh;
             width: auto;
             height: auto; /* Maintain the aspect ratio of the image */
@@ -123,7 +129,7 @@
 
 .hero-images-img{
     position: relative;
-    margin-top: 25vh;
+    margin-top: 27vh;
 }
            
            .image-wrapper-1 { grid-area: 9 / 2 / 12 / 5;  position: relative;}
@@ -279,6 +285,12 @@
            /* .nav-image-container { 
                grid-area: 1 / 2 / 8 / 4; 
            } */
+
+    /*responsive*/
+
+    @media screen and (max-width: 1024px) {
+       
+    }
        </style>
 
 

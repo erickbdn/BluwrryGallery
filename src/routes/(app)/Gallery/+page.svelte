@@ -84,36 +84,42 @@ onMount(() => {
     position: relative; /* Ensure image respects container size */
         width: 100%;
         height: 100%;
+        cursor: pointer;
 }
 .featured-thumbnail-2 {
      grid-area: 3 / 9 / 4 / 10; 
     position: relative; /* Ensure image respects container size */
         width: 100%;
         height: 100%;
+        cursor: pointer;
 }
 .featured-thumbnail-3 { 
     grid-area: 4 / 9 / 5 / 10;
     position: relative; /* Ensure image respects container size */
         width: 100%;
         height: 100%;
+        cursor: pointer;
 }
 .featured-thumbnail-4 { 
     grid-area: 5 / 9 / 6 / 10; 
     position: relative; /* Ensure image respects container size */
         width: 100%;
         height: 100%;
+        cursor: pointer;
 }
 .featured-thumbnail-5 { 
     grid-area: 6 / 9 / 7 / 10;
     position: relative; /* Ensure image respects container size */
         width: 100%;
         height: 100%;
+        cursor: pointer;
 }
 .featured-thumbnail-6 { 
     grid-area: 7 / 9 / 8 / 10;
     position: relative; /* Ensure image respects container size */
         width: 100%;
         height: 100%;
+        cursor: pointer;
 }
 
 [class^="featured-thumbnail-"] img {

@@ -1,6 +1,5 @@
 <script>
     export let data;
-console.log(data)
 import { onMount, onDestroy } from "svelte";
 import { carousel } from '$lib/utils/gsap'
 
@@ -93,11 +92,9 @@ cursor: pointer;
     width: 100vw; /* Occupy full width of the viewport */
     height: 100vh; /* Occupy 80% of the viewport height */
     z-index: 2; /* Set a higher z-index for the overlay-layout */
-    background: rgba(0, 0, 0, 0.36);
-backdrop-filter: blur(20px);
--webkit-backdrop-filter: blur(20px);
-padding-top: 5vh;
-visibility: hidden;
+    background-color: #f4f3ee;
+    padding-top: 5vh;
+    visibility: hidden;
 }
 
 .close-button {
@@ -109,8 +106,8 @@ visibility: hidden;
   font-size: 1.5rem;
   border: 0;
   background: transparent;
-  margin-left: 85vw;
-  color: white;
+  margin-left: 90vw;
+  color: black;
 }
 
 .close-button:hover {
@@ -134,10 +131,11 @@ visibility: hidden;
 
 .carousel-item {
   position: absolute;
+  max-height: 70vh;
   width: 70vw;
   display: grid;
-grid-template-columns: repeat(8, 1fr);
-grid-template-rows: repeat(8, 1fr);
+grid-template-columns: repeat(10, 1fr);
+grid-template-rows: repeat(10, 1fr);
 grid-column-gap: 10px;
 grid-row-gap: 10px;
 }
@@ -145,7 +143,8 @@ grid-row-gap: 10px;
 .carousel-item img {
   max-height: 60vh; /* Set the maximum height */
   width: auto; /* Let the width scale according to the aspect ratio */
-  grid-area: 1 / 1 / 9 / 5;
+  max-width: 40vw;
+  grid-area: 1 / 1 / 9 / 6;
   transition: transform 0.5s ease;
 }
 
@@ -155,23 +154,23 @@ grid-row-gap: 10px;
 }
 
 .carousel-item-title {
-  grid-area: 1 / 1 / 3 / 9;
+  grid-area: 9 / 1 / 10 / 6;
   z-index: 2;
   mix-blend-mode: difference;
-  color: white;
-  font-size: 3em;
-  margin-top: -5vh;
-  margin-left: -5vw;
+  color: black;
+  font-size: 2.5em;
+  margin-top: 4em;
 }
 
 .carousel-item-description {
-  margin-left: 10em;
+  margin-left: 5em;
+  margin-top: 10em;
   z-index: 0;
-  grid-area: 5 / 5 / 6 / 9; 
+  grid-area: 4 / 7 / 7 / 11;
   font-size: 1.15em;
   line-height: 1.6;
   text-align: left;
-  color: white;
+  color: black;
   mix-blend-mode: difference;
 }
 
@@ -185,7 +184,7 @@ grid-row-gap: 10px;
   text-align: center;
   user-select: none;
   font-size: 2.5em;
-  color: white;
+  color: black;
 }
 
 #prevButton {
@@ -202,6 +201,6 @@ grid-row-gap: 10px;
   -ms-user-select: none;
   -o-user-select: none;
   font-size: 2.5em;
-  color: white;
+  color: black;
 }
 </style>
